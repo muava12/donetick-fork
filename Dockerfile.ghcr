@@ -1,0 +1,14 @@
+# Build from pre-compiled binary (built in CI)
+FROM alpine:latest
+
+RUN apk --no-cache add ca-certificates libc6-compat tzdata
+
+COPY donetick /donetick
+COPY config /config
+COPY frontend/dist /frontend/dist
+
+ENV DT_ENV="selfhosted"
+
+EXPOSE 2021
+
+CMD ["/donetick"]
