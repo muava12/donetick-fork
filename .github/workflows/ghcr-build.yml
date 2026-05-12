@@ -24,7 +24,7 @@ jobs:
       - name: Checkout Frontend
         uses: actions/checkout@v4
         with:
-          repository: 'donetick/frontend'
+          repository: 'muava12/donetick-frontend-fork'
           path: 'frontend-code'
 
       - name: Install Node.js
