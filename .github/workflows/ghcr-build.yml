@@ -21,6 +21,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Checkout Frontend
+        uses: actions/checkout@v4
+        with:
+          repository: 'donetick/frontend'
+          path: 'frontend-code'
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '23'
+
+      - name: Build Frontend
+        run: |
+          cd frontend-code
+          npm install
+          npm run build-selfhosted
+
+      - name: Copy Frontend
+        run: |
+          rm -rf ./frontend/dist
+          cp -r frontend-code/dist ./frontend/dist
+
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
